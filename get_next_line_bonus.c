@@ -12,14 +12,20 @@ static int	copy_buff_to_list_elem(t_buff *buff, t_list *list, t_result *res)
 
 	is_line_end = 0;
 	while ((buff->readed_left > 0)
-		&& (buff->arr[buff->next_char_idx - 1] != '\n'))
+		&& (buff->arr[buff->next_char_idx] != '\n'))
 	{
 		list->arr[list->len++] = buff->arr[buff->next_char_idx++];
 		buff->readed_left--;
 		res->size++;
 	}
-	if (buff->arr[buff->next_char_idx - 1] == '\n')
+	if ((buff->readed_left > 0)
+		&& (buff->arr[buff->next_char_idx] == '\n'))
+	{
 		is_line_end = 1;
+		list->arr[list->len++] = buff->arr[buff->next_char_idx++];
+		res->size++;
+		buff->readed_left--;
+	}
 	if (buff->readed_left == 0)
 		buff->next_char_idx = 0;
 	return (is_line_end);
