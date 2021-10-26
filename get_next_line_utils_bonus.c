@@ -12,12 +12,12 @@ t_list	*new_list(void)
 	return (new);
 }
 
-t_list	*push_back_list(t_list *elem)
+t_list	*push_back_list(t_list *last)
 {
-	if (!elem)
+	if (!last)
 		return (NULL);
-	elem->next = new_list();
-	return (elem->next);
+	last->next = new_list();
+	return (last->next);
 }
 
 void	free_list_elem(t_list *elem)
