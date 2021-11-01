@@ -81,7 +81,7 @@ char	*get_next_line(int fd)
 	t_list			*list;
 	t_result		res;
 
-	if (fd < 0 || fd > OPEN_MAX)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1)
 		return (NULL);
 	init_res(&res);
 	list = new_list();
